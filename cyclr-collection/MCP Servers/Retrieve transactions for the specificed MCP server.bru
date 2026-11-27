@@ -1,0 +1,44 @@
+meta {
+  name: Retrieve transactions for the specificed MCP server
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/transactions
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page to retrieve.')
+  ~page: 1
+  @description('Number of items to retrieve.')
+  ~pageSize: 10
+  @description('Search query.')
+  ~q: 
+  @description('Only retrieve transactions created after this date.')
+  ~startDate: 
+  @description('Only retrieve transactions created before this date.')
+  ~endDate: 
+}
+
+params:path {
+  @description('ID of the MCP server to retrieve the transactions for.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Retrieve transactions for the specificed MCP server.**
+  
+  `GET /v1.0/Mcp/servers/{id}/transactions`
+}

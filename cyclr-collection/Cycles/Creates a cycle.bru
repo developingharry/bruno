@@ -1,0 +1,42 @@
+meta {
+  name: Creates a cycle
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles
+  body: json
+  auth: inherit
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "Shareable": false,
+    "StepErrorAction": "Stop",
+    "LogStepDataRequests": false,
+    "CollectionSplitType": "None",
+    "StepDataSuccessRetentionHours": 0,
+    "StepDataErroredRetentionHours": 0,
+    "Tags": [
+      ""
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a cycle**
+  
+  `POST /v1.0/Cycles`
+}

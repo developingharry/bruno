@@ -1,0 +1,29 @@
+meta {
+  name: Generates an ORBIT URL for the user
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/users/orbit
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "Username": "",
+    "Password": "",
+    "AccountId": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates an ORBIT URL for the user**
+  
+  `POST /v1.0/users/orbit`
+}

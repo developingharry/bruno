@@ -1,0 +1,65 @@
+meta {
+  name: Generates a LAUNCH URL for the user
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/users/launch
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "PartnerConnector": {
+      "Name": "",
+      "Version": "",
+      "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+      "AuthValue": "",
+      "Properties": [
+        {
+          "Name": "",
+          "Value": ""
+        }
+      ]
+    },
+    "ConnectorAuthentications": [
+      {
+        "Name": "",
+        "Version": "",
+        "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+        "AuthValue": "",
+        "Properties": [
+          {}
+        ]
+      }
+    ],
+    "InlineOAuth": false,
+    "AccountName": "",
+    "AccountDescription": "",
+    "Username": "",
+    "Password": "",
+    "AccountId": "",
+    "RunOnce": false,
+    "Tags": [
+      ""
+    ],
+    "AutoInstall": false,
+    "SingleInstall": false,
+    "Start": false,
+    "CompleteParameter": "",
+    "Wizard": false,
+    "DisplayDescriptions": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates a LAUNCH URL for the user. Will create user and/or account as required**
+  
+  `POST /v1.0/users/launch`
+}

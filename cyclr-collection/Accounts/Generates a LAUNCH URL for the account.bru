@@ -1,0 +1,67 @@
+meta {
+  name: Generates a LAUNCH URL for the account
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/launch
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the account to get the LAUNCH for')
+  id: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "PartnerConnector": {
+      "Name": "",
+      "Version": "",
+      "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+      "AuthValue": "",
+      "Properties": [
+        {
+          "Name": "",
+          "Value": ""
+        }
+      ]
+    },
+    "ConnectorAuthentications": [
+      {
+        "Name": "",
+        "Version": "",
+        "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+        "AuthValue": "",
+        "Properties": [
+          {}
+        ]
+      }
+    ],
+    "InlineOAuth": false,
+    "AccountName": "",
+    "AccountDescription": "",
+    "CompleteParameter": "",
+    "RunOnce": false,
+    "Tags": [
+      ""
+    ],
+    "AutoInstall": false,
+    "SingleInstall": false,
+    "Start": false,
+    "Wizard": false,
+    "DisplayDescriptions": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates a LAUNCH URL for the account. Will create new account if required**
+  
+  `POST /v1.0/accounts/{id}/launch`
+}

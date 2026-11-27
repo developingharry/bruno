@@ -1,0 +1,33 @@
+meta {
+  name: Install an MCP server into an account
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/install/:accountId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to install into the account.')
+  id: {{cyclr_mcpServerId}}
+  @description('ID of the account to install the MCP server into.')
+  accountId: {{cyclr_accountId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Install an MCP server into an account.**
+  
+  `POST /v1.0/Mcp/servers/{id}/install/{accountId}`
+}

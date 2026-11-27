@@ -1,0 +1,37 @@
+meta {
+  name: Changes the authentication type used by an account connector
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:id/authenticationtype
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  id: {{cyclr_accountConnectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "ConnectorAuthenticationId": "00000000-0000-0000-0000-000000000000"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Changes the authentication type used by an account connector. The account connector will be de-authenticated as part of this change.**
+  
+  `PUT /v1.0/account/connectors/{id}/authenticationtype`
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Retrieve a specific MCP server by the ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to retrieve.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Retrieve a specific MCP server by the ID.**
+  
+  `GET /v1.0/Mcp/servers/{id}`
+}

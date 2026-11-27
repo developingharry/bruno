@@ -1,0 +1,39 @@
+meta {
+  name: Gets all installed account connectors
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page size')
+  ~pageSize: 10
+  @description('Page number')
+  ~page: 1
+  @description('The property name to order by. Only stored account connector properties are supported, e.g. Id, Name or Description')
+  ~orderBy: Name
+  @description('True to sort in ascending order. False for descending order')
+  ~sortOrderAsc: true
+  @description('Query to search the connector name for')
+  ~query: 
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets all installed account connectors**
+  
+  `GET /v1.0/account/connectors`
+}

@@ -1,5 +1,6 @@
 import { collectionSchema, environmentSchema, itemSchema } from '@usebruno/schema';
 import { parseQueryParams, extractPromptVariables, getDataTypeFromValue, nextCopyName, resolveEnvironmentInheritance } from '@usebruno/common/utils';
+import { applyCyclrContext } from 'utils/cyclr/prepare-request';
 import { DEFAULT_HTTP_ITEM_SETTINGS } from '@usebruno/common';
 import { REQUEST_TYPES, DEFAULT_COLLECTION_FORMAT, VARIABLE_ADD_SCOPES } from 'utils/common/constants';
 import cloneDeep from 'lodash/cloneDeep';
@@ -630,6 +631,13 @@ export const sendRequest = (item, collectionUid) => (dispatch, getState) => {
       return reject(error);
     }
 
+    try {
+      await applyCyclrContext({ state: getState(), collectionCopy, itemCopy });
+    } catch (error) {
+      toast.error(error.message);
+      return resolve();
+    }
+
     dispatch(clearScriptVariableBaselines(collectionUid));
 
     await dispatch(
@@ -776,8 +784,8 @@ export const runCollectionFolder
       );
 
       const { ipcRenderer } = window;
-      ipcRenderer
-        .invoke(
+      applyCyclrContext({ state: getState(), collectionCopy, validate: false })
+        .then(() => ipcRenderer.invoke(
           'renderer:run-collection-folder',
           folder,
           collectionCopy,
@@ -787,10 +795,10 @@ export const runCollectionFolder
           delay,
           tags,
           selectedRequestUids
-        )
+        ))
         .then(resolve)
         .catch((err) => {
-          toast.error(get(err, 'error.message') || 'Something went wrong!');
+          toast.error(get(err, 'error.message') || err?.message || 'Something went wrong!');
           reject(err);
         });
     });

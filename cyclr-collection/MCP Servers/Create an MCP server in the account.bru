@@ -1,0 +1,35 @@
+meta {
+  name: Create an MCP server in the account
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers
+  body: json
+  auth: inherit
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Enabled": false,
+    "RequireOAuthToken": false,
+    "Description": "",
+    "Name": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Create an MCP server in the account.**
+  
+  `POST /v1.0/Mcp/servers`
+}

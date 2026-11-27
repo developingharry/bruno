@@ -1,0 +1,31 @@
+meta {
+  name: Start custom field lookup for the method request and response
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Steps/:id/fieldmappings/lookup
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the step to get custom fields for')
+  id: {{cyclr_stepId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Start custom field lookup for the method request and response**
+  
+  `POST /v1.0/Steps/{id}/fieldmappings/lookup`
+}

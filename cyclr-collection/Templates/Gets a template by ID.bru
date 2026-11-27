@@ -1,0 +1,42 @@
+meta {
+  name: Gets a template by ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Templates/:id
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('If true, the response will contain connector icons')
+  ~includeIcons: false
+  @description('If true, the response will contain mapping prerequisites')
+  ~includePrerequisites: false
+  @description('If true, prerequisites will also contain optional parameters and fields. Only used when includePrerequisites is true')
+  ~includeOptional: false
+  @description('If true, will look for custom fields in all the template methods')
+  ~lookupCustomFields: false
+}
+
+params:path {
+  @description('ID of the template to get')
+  id: {{cyclr_templateId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a template by ID**
+  
+  `GET /v1.0/Templates/{id}`
+}

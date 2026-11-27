@@ -1,0 +1,39 @@
+meta {
+  name: Creates a new variable
+  type: http
+  seq: 27
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/variables
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle to create the variable in')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "DisplayName": "",
+    "Value": "",
+    "MappingType": "StaticValue"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new variable**
+  
+  `POST /v1.0/Cycles/{id}/variables`
+}

@@ -1,0 +1,40 @@
+meta {
+  name: Update a specific MCP server by the ID
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to update.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Enabled": false,
+    "RequireOAuthToken": false,
+    "Description": "",
+    "Name": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Update a specific MCP server by the ID.**
+  
+  `PUT /v1.0/Mcp/servers/{id}`
+}

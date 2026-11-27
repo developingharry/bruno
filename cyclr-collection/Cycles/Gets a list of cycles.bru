@@ -1,0 +1,49 @@
+meta {
+  name: Gets a list of cycles
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('The page to get')
+  ~page: 1
+  @description('The property to order by')
+  ~orderBy: UpdatedOnUtc
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+  @description('If true response will contain connector icons')
+  ~includeIcons: false
+  @description('If true response will contain the unmapped steps in a cycle')
+  ~includePrerequisites: false
+  @description('Only get cycles using the the named connector')
+  ~connectorName: 
+  @description('Only get cycles with this version of the named connector')
+  ~connectorVersion: 
+  @description('Only get cycles with the tags')
+  ~tag: 
+  @description('When true, ErrorCount/WarningCount indicate all incidents in the current billing period. When false (default), they indicate unread incidents with no time scope.')
+  ~countAllIncidents: false
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a list of cycles**
+  
+  `GET /v1.0/Cycles`
+}

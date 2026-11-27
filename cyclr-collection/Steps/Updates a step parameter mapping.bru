@@ -1,0 +1,48 @@
+meta {
+  name: Updates a step parameter mapping
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Steps/:id/parameters/:parameterId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the step to update the parameter mapping for')
+  id: {{cyclr_stepId}}
+  @description('Parameter ID to update')
+  parameterId: {{cyclr_parameterId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "MappingType": "PreviousStep",
+    "SourceFieldId": 0,
+    "SourceStepId": "00000000-0000-0000-0000-000000000000",
+    "TriggerValue": null,
+    "TriggerValueDisplayName": null,
+    "Value": "",
+    "IsLaunchVisible": false,
+    "Parameter": {
+      "Id": 0
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Updates a step parameter mapping**
+  
+  `PUT /v1.0/Steps/{id}/parameters/{parameterId}`
+}

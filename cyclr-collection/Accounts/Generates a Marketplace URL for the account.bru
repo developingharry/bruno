@@ -1,0 +1,60 @@
+meta {
+  name: Generates a Marketplace URL for the account
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/marketplace
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the account to get the Marketplace for')
+  id: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "PartnerConnector": {
+      "Name": "",
+      "Version": "",
+      "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+      "AuthValue": "",
+      "Properties": [
+        {
+          "Name": "",
+          "Value": ""
+        }
+      ]
+    },
+    "ConnectorAuthentications": [
+      {
+        "Name": "",
+        "Version": "",
+        "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+        "AuthValue": "",
+        "Properties": [
+          {}
+        ]
+      }
+    ],
+    "AccountName": "",
+    "AccountDescription": "",
+    "CompleteParameter": "",
+    "MarketplaceId": 0,
+    "InlineOAuth": false,
+    "ParentAccountId": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates a Marketplace URL for the account. Will create new account if required**
+  
+  `POST /v1.0/accounts/{id}/marketplace`
+}

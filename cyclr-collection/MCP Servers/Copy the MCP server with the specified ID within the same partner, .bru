@@ -1,0 +1,40 @@
+meta {
+  name: Copy the MCP server with the specified ID within the same partner, ...
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/copy
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('The ID of the MCP server to copy.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "DestinationPartnerId": 0
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Copy the MCP server with the specified ID within the same partner, or to a different partner.**
+  
+  Only MCP servers owned by the requesting partner can be copied to a different partner.
+  When copying within the same partner, the server is placed in the same account it originated from.
+  
+  `POST /v1.0/Mcp/servers/{id}/copy`
+}

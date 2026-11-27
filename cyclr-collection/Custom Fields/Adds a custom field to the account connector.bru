@@ -1,0 +1,45 @@
+meta {
+  name: Adds a custom field to the account connector
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:accountConnectorId/fields
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "ConnectorField": "",
+    "SystemField": "",
+    "DisplayName": "",
+    "Description": "",
+    "DataType": "Undefined",
+    "DataTypeFormat": "",
+    "MethodUniqueIdentifier": "00000000-0000-0000-0000-000000000000",
+    "EntityIdentifier": "",
+    "ForRequestFormat": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Adds a custom field to the account connector**
+  
+  `POST /v1.0/account/connectors/{accountConnectorId}/fields`
+}

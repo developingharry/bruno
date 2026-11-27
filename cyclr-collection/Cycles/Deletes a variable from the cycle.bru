@@ -1,0 +1,33 @@
+meta {
+  name: Deletes a variable from the cycle
+  type: http
+  seq: 31
+}
+
+delete {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/variables/:systemName
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle')
+  id: {{cyclr_cycleId}}
+  @description('System name of the variable to delete')
+  systemName: {{cyclr_cycleVariable}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Deletes a variable from the cycle**
+  
+  `DELETE /v1.0/Cycles/{id}/variables/{systemName}`
+}

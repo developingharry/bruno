@@ -1,0 +1,43 @@
+meta {
+  name: Creates a new annotation
+  type: http
+  seq: 22
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/steps/annotation
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the cycle to create the annotation in.')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "ActionType": "None",
+    "DisplayPositionLeft": 0,
+    "DisplayPositionTop": 0,
+    "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+    "Id": "00000000-0000-0000-0000-000000000000"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new annotation.**
+  
+  `POST /v1.0/Cycles/{id}/steps/annotation`
+}

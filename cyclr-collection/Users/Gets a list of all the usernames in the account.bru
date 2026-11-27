@@ -1,0 +1,26 @@
+meta {
+  name: Gets a list of all the usernames in the account
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:accountId/users
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the account to get the users of')
+  accountId: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a list of all the usernames in the account**
+  
+  `GET /v1.0/accounts/{accountId}/users`
+}

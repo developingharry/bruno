@@ -31,6 +31,8 @@ import RequestTabPanelLoading from './RequestTabPanelLoading';
 import FolderNotFound from './FolderNotFound';
 import ExampleNotFound from './ExampleNotFound';
 import WsQueryUrl from 'components/RequestPane/WsQueryUrl';
+import CyclrContextBar from 'components/Cyclr/ContextBar';
+import { isCyclrCollection } from 'utils/cyclr/registry';
 import WSRequestPane from 'components/RequestPane/WSRequestPane';
 import WSResponsePane from 'components/ResponsePane/WsResponsePane';
 import { useTabPaneBoundaries } from 'hooks/useTabPaneBoundaries/index';
@@ -706,6 +708,9 @@ const RequestTabPanel = () => {
         } ${requestPaneCollapsed ? 'request-collapsed' : ''} ${responsePaneCollapsed ? 'response-collapsed' : ''}`}
       >
         <div className="query-url-wrapper pt-3 pb-4 px-4">
+          {isCyclrCollection(collection) && item.type === 'http-request' && (
+            <CyclrContextBar collection={collection} item={item} />
+          )}
           {renderQueryUrl()}
         </div>
         <section ref={mainSectionRef} className={`main flex ${isVerticalLayout ? 'flex-col' : ''} flex-grow relative overflow-auto`}>

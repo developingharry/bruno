@@ -1,0 +1,39 @@
+meta {
+  name: Creates a new account
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/accounts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "Id": "",
+    "Name": "",
+    "Description": "",
+    "AuditInfo": "",
+    "TaskAuditInfo": "",
+    "Timezone": "",
+    "NextBillDateUtc": "2026-01-01T00:00:00Z",
+    "StepDataSuccessRetentionHours": 0,
+    "StepDataErroredRetentionHours": 0,
+    "TransactionErrorWebhookEnabled": false,
+    "TransactionErrorWebhookUrl": "",
+    "TransactionErrorWebhookIncludeWarnings": false,
+    "ParentAccountId": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new account**
+  
+  `POST /v1.0/accounts`
+}

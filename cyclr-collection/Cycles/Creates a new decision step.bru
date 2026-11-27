@@ -1,0 +1,53 @@
+meta {
+  name: Creates a new decision step
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/steps/decision
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the cycle to create the decision step in.')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "ActionType": "None",
+    "DisplayPositionLeft": 0,
+    "DisplayPositionTop": 0,
+    "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "LeftOperandStaticValue": "",
+    "LeftOperandStepId": "00000000-0000-0000-0000-000000000000",
+    "LeftOperandFieldId": 0,
+    "LeftOperandType": "PreviousStepField",
+    "CycleConditionType": "Exists",
+    "RightOperandStaticValue": "",
+    "RightOperandStepId": "00000000-0000-0000-0000-000000000000",
+    "RightOperandFieldId": 0,
+    "RightOperandType": "PreviousStepField",
+    "SplitCollection": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new decision step.**
+  
+  `POST /v1.0/Cycles/{id}/steps/decision`
+}

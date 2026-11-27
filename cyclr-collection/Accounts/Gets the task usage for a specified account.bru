@@ -1,0 +1,33 @@
+meta {
+  name: Gets the task usage for a specified account
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/usage
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('The start date from which to retrieve the task usage')
+  ~start: 
+  @description('The end date until which to retrieve the task usage')
+  ~end: 
+}
+
+params:path {
+  @description('ID of the account to retrieve the usage for')
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the task usage for a specified account. Leave both date values blank to get usage for the current billing period**
+  
+  `GET /v1.0/accounts/{id}/usage`
+}

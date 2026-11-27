@@ -1,0 +1,33 @@
+meta {
+  name: Gets a step parameter mapping
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Steps/:id/parameters/:parameterId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the step to get the parameter mapping for')
+  id: {{cyclr_stepId}}
+  @description('ID of the step parameter mapping to get')
+  parameterId: {{cyclr_parameterId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a step parameter mapping**
+  
+  `GET /v1.0/Steps/{id}/parameters/{parameterId}`
+}

@@ -1,0 +1,47 @@
+meta {
+  name: Remove account connector tools from the specified MCP server
+  type: http
+  seq: 13
+}
+
+delete {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/connectors/:accountConnectorId/tools
+  body: json
+  auth: inherit
+}
+
+params:query {
+  @description('True to remove the account connector from the MCP server if all tools are removed.')
+  ~removeAccountConnector: false
+}
+
+params:path {
+  @description('ID of the MCP server to remove the tools from.')
+  id: {{cyclr_mcpServerId}}
+  @description('ID of the account connector that contains the MCP server tools.')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  [
+    {
+      "CategoryId": 0,
+      "MethodUniqueIdentifier": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Remove account connector tools from the specified MCP server.**
+  
+  `DELETE /v1.0/Mcp/servers/{id}/connectors/{accountConnectorId}/tools`
+}

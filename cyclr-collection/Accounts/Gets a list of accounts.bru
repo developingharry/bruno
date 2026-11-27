@@ -1,0 +1,30 @@
+meta {
+  name: Gets a list of accounts
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('The amount of accounts to return in each page')
+  ~pageSize: 10
+  @description('The page to get')
+  ~page: 1
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a list of accounts**
+  
+  `GET /v1.0/accounts`
+}

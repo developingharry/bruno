@@ -1,0 +1,33 @@
+meta {
+  name: Retrieve the authentication for the specified MCP server
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/authentication
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to retrieve the authentication details for.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Retrieve the authentication for the specified MCP server.**
+  
+  Only MCP servers that require OAuth client credentials will return authentication details.
+  
+  `GET /v1.0/Mcp/servers/{id}/authentication`
+}

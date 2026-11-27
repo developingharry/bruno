@@ -16,6 +16,8 @@ import { createDescriptionColumn } from 'components/EditableTable/descriptionCol
 import StyledWrapper from './StyledWrapper';
 import BulkEditor from '../../BulkEditor';
 import { usePersistedState } from 'hooks/usePersistedState';
+import PathParamPicker from 'components/Cyclr/PathParamPicker';
+import { isCyclrCollection } from 'utils/cyclr/registry';
 import { useTrackScroll } from 'hooks/useTrackScroll';
 
 const QueryParams = ({ item, collection }) => {
@@ -127,6 +129,8 @@ const QueryParams = ({ item, collection }) => {
     descriptionColumnQuery
   ];
 
+  const isCyclr = isCyclrCollection(collection);
+
   const pathColumns = [
     {
       key: 'name',
@@ -139,17 +143,32 @@ const QueryParams = ({ item, collection }) => {
       key: 'value',
       name: 'Value',
       placeholder: 'Value',
-      render: ({ row, value, onChange }) => (
-        <MultiLineEditor
-          value={value || ''}
-          theme={storedTheme}
-          onSave={onSave}
-          onChange={(newValue) => handlePathParamChange(row.uid, 'value', newValue)}
-          onRun={handleRun}
-          collection={collection}
-          item={item}
-        />
-      )
+      render: ({ row, value }) => {
+        const editor = (
+          <MultiLineEditor
+            value={value || ''}
+            theme={storedTheme}
+            onSave={onSave}
+            onChange={(newValue) => handlePathParamChange(row.uid, 'value', newValue)}
+            onRun={handleRun}
+            collection={collection}
+            item={item}
+          />
+        );
+        if (!isCyclr) return editor;
+        return (
+          <div className="flex items-center gap-1 w-full min-w-0">
+            <div className="flex-1 min-w-0">{editor}</div>
+            <PathParamPicker
+              collection={collection}
+              item={item}
+              paramName={row.name}
+              value={value}
+              onValueChange={(newValue) => handlePathParamChange(row.uid, 'value', newValue)}
+            />
+          </div>
+        );
+      }
     },
     descriptionColumnPath
   ];

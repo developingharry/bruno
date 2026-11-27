@@ -1,0 +1,57 @@
+meta {
+  name: Generates a Marketplace URL for the user
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/users/marketplace
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "PartnerConnector": {
+      "Name": "",
+      "Version": "",
+      "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+      "AuthValue": "",
+      "Properties": [
+        {
+          "Name": "",
+          "Value": ""
+        }
+      ]
+    },
+    "ConnectorAuthentications": [
+      {
+        "Name": "",
+        "Version": "",
+        "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+        "AuthValue": "",
+        "Properties": [
+          {}
+        ]
+      }
+    ],
+    "AccountName": "",
+    "AccountDescription": "",
+    "CompleteParameter": "",
+    "Username": "",
+    "Password": "",
+    "AccountId": "",
+    "MarketplaceId": 0,
+    "InlineOAuth": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates a Marketplace URL for the user. Will create user and/or account as required**
+  
+  `POST /v1.0/users/marketplace`
+}

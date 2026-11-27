@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve all MCP servers for the account
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers
+  body: none
+  auth: inherit
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Retrieve all MCP servers for the account.**
+  
+  `GET /v1.0/Mcp/servers`
+}

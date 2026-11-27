@@ -1,0 +1,39 @@
+meta {
+  name: Gets task, error and warning usage per cycle for a specified account
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/cycles/usage
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('The start date from which to retrieve the cycle usage.')
+  ~start: 
+  @description('The end date until which to retrieve the cycle usage.')
+  ~end: 
+  @description('The page to get. If pageSize is not also supplied, this is ignored and every cycle is returned.')
+  ~page: 
+  @description('The amount of cycles to return in each page. Omit to return every cycle; if supplied without page, page 1 is used.')
+  ~pageSize: 
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+}
+
+params:path {
+  @description('ID of the account to retrieve the cycle usage for.')
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets task, error and warning usage per cycle for a specified account. Leave both date values blank to get task, error and warning usage for the current billing period.**
+  
+  `GET /v1.0/accounts/{id}/cycles/usage`
+}

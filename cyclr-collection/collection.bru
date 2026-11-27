@@ -1,0 +1,26 @@
+headers {
+  Accept: application/json
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{cyclr_token}}
+}
+
+docs {
+  # Cyclr API
+  
+  Cyclr gives SaaS platforms embedded integration to hundreds of applications.
+  
+  ## Using this collection
+  
+  1. Pick a **Stack** in the bar above the URL. It sets `{{cyclr_baseUrl}}`. Stacks and admin webhooks are edited under *Cyclr settings…* in the same menu.
+  2. Pick a **Partner**. The list comes from the stack's admin webhook. The first time, you're asked for that partner's API client ID and secret.
+  3. Pick an Account, then a Cycle, then a Step… Each dropdown is fed by the matching List endpoint, using the selections before it. A token is fetched into `{{cyclr_token}}` automatically on every send.
+  4. In the Params tab, the list icon beside a path parameter opens the same picker for that parameter.
+  
+  Generated from `cyclr_api.json` (v1.0) by `scripts/cyclr/generate-collection.mjs`.
+}

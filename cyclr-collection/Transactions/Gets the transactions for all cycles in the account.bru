@@ -1,0 +1,43 @@
+meta {
+  name: Gets the transactions for all cycles in the account
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/cycles/transactions
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page to get')
+  ~page: 1
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('Only get transactions after or on this timestamp')
+  ~after: 
+  @description('Only get transaction on or before this timestamp')
+  ~before: 
+  @description('Allows you to limit the results to only Completed or InProgress transactions')
+  ~status: All
+  @description('Allows you to limit the results to only Split or Unsplit transactions')
+  ~splitType: All
+  @description('True to sort in ascending order. False for descending order')
+  ~sortOrderAsc: true
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the transactions for all cycles in the account**
+  
+  `GET /v1.0/cycles/transactions`
+}

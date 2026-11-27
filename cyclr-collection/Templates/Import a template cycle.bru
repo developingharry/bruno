@@ -1,0 +1,30 @@
+meta {
+  name: Import a template cycle
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Templates/import
+  body: json
+  auth: inherit
+}
+
+params:query {
+  @description('The folder the template cycle should belong in')
+  ~folderId: 
+}
+
+body:json {
+  {}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Import a template cycle**
+  
+  `POST /v1.0/Templates/import`
+}

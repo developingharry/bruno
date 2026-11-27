@@ -1,0 +1,43 @@
+meta {
+  name: Get a list of connectors
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/connectors
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('The page to get')
+  ~page: 1
+  @description('The property to order by')
+  ~orderBy: Name
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+  @description('Set to false to exclude custom connectors')
+  ~includeCustomConnectors: true
+  @description('Query to search the connector name for')
+  ~query: 
+  @description('Filters connectors to only those in the specified category')
+  ~category: 
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Get a list of connectors**
+  
+  `GET /v1.0/connectors`
+}

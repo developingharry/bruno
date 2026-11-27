@@ -1,0 +1,41 @@
+meta {
+  name: Updates the mapping type and value of a variable
+  type: http
+  seq: 30
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/variables/:systemName
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle the variable is in')
+  id: {{cyclr_cycleId}}
+  @description('System name of the variable to update')
+  systemName: {{cyclr_cycleVariable}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "DisplayName": "",
+    "Value": "",
+    "MappingType": "StaticValue"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Updates the mapping type and value of a variable**
+  
+  `PUT /v1.0/Cycles/{id}/variables/{systemName}`
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Disable the specified MCP server
+  type: http
+  seq: 11
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/disable
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to disable.')
+  id: {{cyclr_mcpServerId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Disable the specified MCP server.**
+  
+  `PUT /v1.0/Mcp/servers/{id}/disable`
+}

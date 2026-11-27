@@ -1,0 +1,80 @@
+meta {
+  name: Creates a new webhook step
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/steps/webhook
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the cycle to create the webhook step in.')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "ActionType": "None",
+    "DisplayPositionLeft": 0,
+    "DisplayPositionTop": 0,
+    "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "AccountConnector": {
+      "Id": 0,
+      "Name": "",
+      "Description": "",
+      "AuthValue": "",
+      "Connector": {
+        "Status": "Unknown",
+        "AuthType": "None",
+        "OAuth2Type": "Unknown",
+        "IsSystemConnector": false,
+        "CustomizableCategories": [
+          {}
+        ]
+      },
+      "IsPartnerIntegrationConnector": false
+    },
+    "Method": {
+      "Id": 0,
+      "MethodType": "Action",
+      "CreateWebhookMethod": {
+        "Name": "",
+        "MethodUniqueId": "00000000-0000-0000-0000-000000000000",
+        "MethodId": 0
+      },
+      "DeleteWebhookMethod": {
+        "Name": "",
+        "MethodUniqueId": "00000000-0000-0000-0000-000000000000",
+        "MethodId": 0
+      }
+    },
+    "CustomCategoryId": 0,
+    "ContinueOnNullSource": false,
+    "ContinueOnNullResult": false,
+    "Script": "",
+    "PreviousStepId": "00000000-0000-0000-0000-000000000000",
+    "PreviousStepFieldId": 0,
+    "KeyFieldId": 0
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new webhook step.**
+  
+  `POST /v1.0/Cycles/{id}/steps/webhook`
+}

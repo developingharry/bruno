@@ -1,0 +1,35 @@
+meta {
+  name: Gets the sub accounts for an account
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/subaccounts
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('The amount of sub accounts to return in each page')
+  ~pageSize: 10
+  @description('The page to get')
+  ~page: 1
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+}
+
+params:path {
+  @description('ID of the account to get the sub accounts of')
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the sub accounts for an account**
+  
+  `GET /v1.0/accounts/{id}/subaccounts`
+}

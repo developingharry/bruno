@@ -1,0 +1,35 @@
+meta {
+  name: Get method details for a method grouped by a custom category
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:accountConnectorId/customcategories/:customizableCategoryId/methods/:methodId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+  @description('Category ID')
+  customizableCategoryId: {{cyclr_customizableCategoryId}}
+  @description('Method ID')
+  methodId: {{cyclr_accountConnectorMethodId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Get method details for a method grouped by a custom category**
+  
+  `GET /v1.0/account/connectors/{accountConnectorId}/customcategories/{customizableCategoryId}/methods/{methodId}`
+}

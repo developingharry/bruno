@@ -1,0 +1,34 @@
+meta {
+  name: Gets task, error and warning usage for all accounts in the partner ...
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/usage
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('The start date from which to retrieve the task usage')
+  ~start: 
+  @description('The end date until which to retrieve the task usage')
+  ~end: 
+  @description('The amount of accounts to return in each page. Omit, along with page, to return every account.')
+  ~pageSize: 
+  @description('The page to get. Omit, along with pageSize, to return every account.')
+  ~page: 
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets task, error and warning usage for all accounts in the partner within the given date range**
+  
+  `GET /v1.0/accounts/usage`
+}

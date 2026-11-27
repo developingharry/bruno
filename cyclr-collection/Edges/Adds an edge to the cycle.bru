@@ -1,0 +1,41 @@
+meta {
+  name: Adds an edge to the cycle
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/cycles/:cycleId/edges
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle')
+  cycleId: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Id": "00000000-0000-0000-0000-000000000000",
+    "HeadStepId": "00000000-0000-0000-0000-000000000000",
+    "TailStepId": "00000000-0000-0000-0000-000000000000",
+    "EdgeType": "Forward",
+    "SwitchCase": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Adds an edge to the cycle**
+  
+  `POST /v1.0/cycles/{cycleId}/edges`
+}

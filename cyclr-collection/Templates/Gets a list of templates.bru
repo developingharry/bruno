@@ -1,0 +1,55 @@
+meta {
+  name: Gets a list of templates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Templates
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('The page to get')
+  ~page: 1
+  @description('The property to order by')
+  ~orderBy: Name
+  @description('True for ascending; false for descending')
+  ~sortOrderAsc: true
+  @description('Query to search templates for')
+  ~query: 
+  @description('Only get templates using the the named connector')
+  ~connectorName: 
+  @description('Only get templates with this version of the named connector')
+  ~connectorVersion: 
+  @description('If true response will contain connector icons')
+  ~includeIcons: false
+  @description('If true response will contain mapping prerequisites')
+  ~includePrerequisites: false
+  @description('If true, prerequisites will also contain optional parameters and fields. Only used when includePrerequisites is true')
+  ~includeOptional: false
+  @description('If true, will look for custom fields in all the template methods')
+  ~lookupCustomFields: false
+  @description('Only get templates with the tags')
+  ~tag: 
+  @description('Only get templates with the specified release status')
+  ~releaseStatus: Unknown
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a list of templates**
+  
+  `GET /v1.0/Templates`
+}

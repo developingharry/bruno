@@ -1,0 +1,48 @@
+meta {
+  name: Installs a connector (POST)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/connectors/:name/install
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Name of the connector to install')
+  name: {{cyclr_connectorName}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "AuthenticationId": "00000000-0000-0000-0000-000000000000",
+    "AuthValue": "",
+    "IsPartnerIntegrationConnector": false,
+    "Properties": [
+      {
+        "Name": "",
+        "Value": "",
+        "Id": 0
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Installs a connector**
+  
+  `POST /v1.0/connectors/{name}/install`
+}

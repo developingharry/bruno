@@ -1,0 +1,42 @@
+meta {
+  name: Calls a connector method with the given method request body
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:id/methods/:methodId/body
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  id: {{cyclr_accountConnectorId}}
+  @description('Method ID or the method unique identifier')
+  methodId: {{cyclr_accountConnectorMethodId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "RequestBody": "",
+    "Parameters": {},
+    "Mergefields": {},
+    "CustomCategoryId": 0
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Calls a connector method with the given method request body**
+  
+  `POST /v1.0/account/connectors/{id}/methods/{methodId}/body`
+}

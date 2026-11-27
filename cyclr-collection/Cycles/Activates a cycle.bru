@@ -1,0 +1,39 @@
+meta {
+  name: Activates a cycle
+  type: http
+  seq: 13
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/activate
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle to activate')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "StartTime": "2026-01-01T00:00:00Z",
+    "Interval": 0,
+    "RunOnce": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Activates a cycle**
+  
+  `PUT /v1.0/Cycles/{id}/activate`
+}

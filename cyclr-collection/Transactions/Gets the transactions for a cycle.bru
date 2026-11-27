@@ -1,0 +1,58 @@
+meta {
+  name: Gets the transactions for a cycle
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/cycles/:cycleId/transactions
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page to get')
+  ~page: 1
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('Search query for transaction data, will only get transactions containing matching data')
+  ~query: 
+  @description('Only get transactions after or on this timestamp')
+  ~after: 
+  @description('Only get transaction on or before this timestamp')
+  ~before: 
+  @description('Allows you to limit the results to only Completed or InProgress transactions')
+  ~status: All
+  @description('Allows you to limit the results to only Split or Unsplit transactions')
+  ~splitType: All
+  @description('Limits the results to transactions split from this parent')
+  ~parentTransactionId: 
+  @description('Limits the results to transactions matching the specified type(s).')
+  ~transactionType: All
+  @description('Column to sort by.')
+  ~sortColumn: StartedTimestamp
+  @description('Sort ascending or descending.')
+  ~sortAscending: true
+  @description('Optional comma-separated list of items to include in the response. Valid items: ```ChildTransactionCount``` and ```ChildTransactionSuccessCount```')
+  ~include: 
+}
+
+params:path {
+  @description('ID of the cycle')
+  cycleId: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the transactions for a cycle**
+  
+  `GET /v1.0/cycles/{cycleId}/transactions`
+}

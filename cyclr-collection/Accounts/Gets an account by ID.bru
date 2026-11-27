@@ -1,0 +1,26 @@
+meta {
+  name: Gets an account by ID
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the account to get')
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets an account by ID**
+  
+  `GET /v1.0/accounts/{id}`
+}

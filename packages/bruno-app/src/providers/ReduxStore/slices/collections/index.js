@@ -3781,6 +3781,12 @@ export const collectionsSlice = createSlice({
         item.draft.app.enabled = action.payload.enabled;
       }
     },
+    cyclrSetRuntimeVariables: (state, action) => {
+      const { collectionUid, variables } = action.payload;
+      const collection = findCollectionByUid(state.collections, collectionUid);
+      if (!collection) return;
+      collection.runtimeVariables = { ...(collection.runtimeVariables || {}), ...(variables || {}) };
+    },
     appSetRuntimeVariable: (state, action) => {
       const { collectionUid, key, value } = action.payload;
       const collection = findCollectionByUid(state.collections, collectionUid);
@@ -4482,6 +4488,7 @@ export const {
   updateAppCode,
   toggleAppMode,
   appSetRuntimeVariable,
+  cyclrSetRuntimeVariables,
   moveCollection,
   streamDataReceived,
   collectionAddOauth2CredentialsByUrl,

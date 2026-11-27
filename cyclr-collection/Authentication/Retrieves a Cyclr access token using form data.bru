@@ -1,0 +1,31 @@
+meta {
+  name: Retrieves a Cyclr access token using form data
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{cyclr_baseUrl}}/oauth/token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+  client_id: 
+  client_secret: 
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Retrieves a Cyclr access token using form data**
+  
+  Exchanges a code for an access token from Cyclr.
+  
+  `POST /oauth/token`
+  
+  You normally don't need this request: the Cyclr context bar fetches and refreshes tokens automatically for the selected partner.
+}

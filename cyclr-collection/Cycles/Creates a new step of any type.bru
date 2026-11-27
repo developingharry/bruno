@@ -1,0 +1,42 @@
+meta {
+  name: Creates a new step of any type
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/steps
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the cycle to create the step in.')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "ActionType": "None",
+    "DisplayPositionLeft": 0,
+    "DisplayPositionTop": 0,
+    "LastSuccessfulRunDate": "2026-01-01T00:00:00Z"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Creates a new step of any type.**
+  
+  `POST /v1.0/Cycles/{id}/steps`
+}

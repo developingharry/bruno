@@ -1,0 +1,38 @@
+meta {
+  name: Get the lookup values for an enhanced object category
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:accountConnectorId/customcategories/:customizableCategoryId/lookup
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Name of the parameter to look up the values for. Optional when the category has only one parameter.')
+  ~parameterName: 
+}
+
+params:path {
+  @description('Account connector ID')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+  @description('Category ID')
+  customizableCategoryId: {{cyclr_customizableCategoryId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Get the lookup values for an enhanced object category**
+  
+  `GET /v1.0/account/connectors/{accountConnectorId}/customcategories/{customizableCategoryId}/lookup`
+}

@@ -1,0 +1,42 @@
+meta {
+  name: Gets all custom fields from the account connector
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:accountConnectorId/fields
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page size')
+  ~pageSize: 10
+  @description('Page number')
+  ~page: 1
+  @description('The property name to order by')
+  ~orderBy: DisplayOrder
+  @description('True to sort in ascending order. False for descending order')
+  ~sortOrderAsc: true
+}
+
+params:path {
+  @description('Account connector ID')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets all custom fields from the account connector**
+  
+  `GET /v1.0/account/connectors/{accountConnectorId}/fields`
+}

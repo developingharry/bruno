@@ -1,0 +1,26 @@
+meta {
+  name: Deletes an account by ID
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the account to delete')
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Deletes an account by ID**
+  
+  `DELETE /v1.0/accounts/{id}`
+}

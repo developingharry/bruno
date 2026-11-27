@@ -1,0 +1,113 @@
+meta {
+  name: Installs the template
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Templates/:id/install
+  body: json
+  auth: inherit
+}
+
+params:query {
+  @description('If true response will contain connector icons')
+  ~includeIcons: false
+  @description('If true, the response will contain mapping prerequisites')
+  ~includePrerequisites: false
+}
+
+params:path {
+  @description('ID of the template to install')
+  id: {{cyclr_templateId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "Prerequisites": [
+      {
+        "Step": {
+          "Id": "00000000-0000-0000-0000-000000000000"
+        },
+        "DecisionStep": {
+          "Name": "",
+          "Description": "",
+          "ActionType": "None",
+          "DisplayPositionLeft": 0,
+          "DisplayPositionTop": 0,
+          "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+          "Id": "00000000-0000-0000-0000-000000000000",
+          "LeftOperandStaticValue": "",
+          "LeftOperandStepId": "00000000-0000-0000-0000-000000000000",
+          "LeftOperandFieldId": 0,
+          "LeftOperandType": "PreviousStepField",
+          "CycleConditionType": "Exists",
+          "RightOperandStaticValue": "",
+          "RightOperandStepId": "00000000-0000-0000-0000-000000000000",
+          "RightOperandFieldId": 0,
+          "RightOperandType": "PreviousStepField",
+          "SplitCollection": false
+        },
+        "DelayStep": {
+          "Name": "",
+          "Description": "",
+          "ActionType": "None",
+          "DisplayPositionLeft": 0,
+          "DisplayPositionTop": 0,
+          "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+          "Id": "00000000-0000-0000-0000-000000000000",
+          "PreviousStepId": "00000000-0000-0000-0000-000000000000",
+          "PreviousFieldId": 0,
+          "CycleDelayUnit": "Seconds",
+          "Interval": 0
+        },
+        "WaitUntilStep": {
+          "Name": "",
+          "Description": "",
+          "ActionType": "None",
+          "DisplayPositionLeft": 0,
+          "DisplayPositionTop": 0,
+          "LastSuccessfulRunDate": "2026-01-01T00:00:00Z",
+          "Id": "00000000-0000-0000-0000-000000000000",
+          "PreviousStepId": "00000000-0000-0000-0000-000000000000",
+          "PreviousFieldId": 0,
+          "DateTimeUtc": "2026-01-01T00:00:00Z",
+          "Offset": 0,
+          "CycleDelayUnit": "Seconds"
+        },
+        "Parameters": [
+          {}
+        ],
+        "Fields": [
+          {}
+        ]
+      }
+    ],
+    "AccountConnectorIds": [
+      0
+    ],
+    "AccountConnectorMap": [
+      {
+        "SourceAccountConnectorId": 0,
+        "DestinationAccountConnectorId": 0
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Installs the template**
+  
+  `POST /v1.0/Templates/{id}/install`
+}

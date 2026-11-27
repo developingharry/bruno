@@ -15,6 +15,7 @@ import mockServerReducer from './slices/mock-server/index';
 import openCollectionModalReducer from './slices/open-collection-modal';
 import chatReducer from './slices/chat';
 import collectionMigrationReducer from './slices/collection-migration';
+import cyclrReducer from './slices/cyclr';
 import { draftDetectMiddleware } from './middlewares/draft/middleware';
 import { autosaveMiddleware } from './middlewares/autosave/middleware';
 import { snapshotMiddleware } from './middlewares/snapshot/middleware';
@@ -44,7 +45,8 @@ export const store = configureStore({
     openCollectionModal: openCollectionModalReducer,
     mockServer: mockServerReducer,
     chat: chatReducer,
-    collectionMigration: collectionMigrationReducer
+    collectionMigration: collectionMigrationReducer,
+    cyclr: cyclrReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()

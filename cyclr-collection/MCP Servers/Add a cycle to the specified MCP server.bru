@@ -1,0 +1,33 @@
+meta {
+  name: Add a cycle to the specified MCP server
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/cycles/:versionedCycleId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to add the tools to.')
+  id: {{cyclr_mcpServerId}}
+  @description('ID of the cycle to add to the MCP server.')
+  versionedCycleId: {{cyclr_versionedCycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Add a cycle to the specified MCP server.**
+  
+  `POST /v1.0/Mcp/servers/{id}/cycles/{versionedCycleId}`
+}

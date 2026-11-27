@@ -1,0 +1,38 @@
+meta {
+  name: Gets the methods for the connector
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/connectors/:id/methods
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Query to search method name for')
+  ~query: 
+  @description('Filter methods to only those that are in the specified category')
+  ~category: 
+}
+
+params:path {
+  @description('ID of the connector to get the methods for')
+  id: {{cyclr_connectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the methods for the connector**
+  
+  `GET /v1.0/connectors/{id}/methods`
+}

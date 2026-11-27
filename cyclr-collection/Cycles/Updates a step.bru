@@ -1,0 +1,44 @@
+meta {
+  name: Updates a step
+  type: http
+  seq: 24
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id/steps/:stepId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the cycle the step is in')
+  id: {{cyclr_cycleId}}
+  @description('Id of the step to update')
+  stepId: {{cyclr_stepId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Name": "",
+    "Description": "",
+    "ActionType": "None",
+    "DisplayPositionLeft": 0,
+    "DisplayPositionTop": 0,
+    "LastSuccessfulRunDate": "2026-01-01T00:00:00Z"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Updates a step.**
+  
+  `PUT /v1.0/Cycles/{id}/steps/{stepId}`
+}

@@ -1,0 +1,43 @@
+meta {
+  name: Updates an existing account
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Id of the account to update')
+  id: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Id": "",
+    "Name": "",
+    "Description": "",
+    "AuditInfo": "",
+    "TaskAuditInfo": "",
+    "Timezone": "",
+    "NextBillDateUtc": "2026-01-01T00:00:00Z",
+    "StepDataSuccessRetentionHours": 0,
+    "StepDataErroredRetentionHours": 0,
+    "TransactionErrorWebhookEnabled": false,
+    "TransactionErrorWebhookUrl": "",
+    "TransactionErrorWebhookIncludeWarnings": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Updates an existing account**
+  
+  `PUT /v1.0/accounts/{id}`
+}

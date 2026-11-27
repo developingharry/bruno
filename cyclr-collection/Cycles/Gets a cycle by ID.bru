@@ -1,0 +1,40 @@
+meta {
+  name: Gets a cycle by ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/Cycles/:id
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('If true response will contain connector icons')
+  ~includeIcons: false
+  @description('If true response will contain the unmapped steps in a cycle')
+  ~includePrerequisites: false
+  @description('When true, ErrorCount/WarningCount indicate all incidents in the current billing period. When false (default), they indicate unread incidents with no time scope.')
+  ~countAllIncidents: false
+}
+
+params:path {
+  @description('ID of the cycle to get')
+  id: {{cyclr_cycleId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets a cycle by ID**
+  
+  `GET /v1.0/Cycles/{id}`
+}

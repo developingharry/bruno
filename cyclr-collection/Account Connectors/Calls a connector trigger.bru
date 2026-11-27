@@ -1,0 +1,42 @@
+meta {
+  name: Calls a connector trigger
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:id/triggers/:triggerId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  id: {{cyclr_accountConnectorId}}
+  @description('Trigger ID')
+  triggerId: 
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "Parameters": {},
+    "Fields": {},
+    "Mergefields": {},
+    "CustomCategoryId": 0
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Calls a connector trigger**
+  
+  `POST /v1.0/account/connectors/{id}/triggers/{triggerId}`
+}

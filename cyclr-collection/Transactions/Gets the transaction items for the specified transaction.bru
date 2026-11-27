@@ -1,0 +1,42 @@
+meta {
+  name: Gets the transaction items for the specified transaction
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/cycles/:cycleId/transactions/:id
+  body: none
+  auth: inherit
+}
+
+params:query {
+  @description('Page to get')
+  ~page: 1
+  @description('Size of the page to get')
+  ~pageSize: 10
+  @description('Search query to filter items')
+  ~query: 
+}
+
+params:path {
+  @description('ID of the cycle the transaction is for')
+  cycleId: {{cyclr_cycleId}}
+  @description('ID of the transaction to get the items for')
+  id: {{cyclr_transactionId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets the transaction items for the specified transaction**
+  
+  `GET /v1.0/cycles/{cycleId}/transactions/{id}`
+}

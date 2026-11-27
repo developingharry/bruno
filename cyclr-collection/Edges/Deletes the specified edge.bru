@@ -1,0 +1,33 @@
+meta {
+  name: Deletes the specified edge
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{cyclr_baseUrl}}/v1.0/cycles/:cycleId/edges/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the cycle')
+  cycleId: {{cyclr_cycleId}}
+  @description('ID of the edge to delete from the cycle')
+  id: {{cyclr_edgeId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Deletes the specified edge**
+  
+  `DELETE /v1.0/cycles/{cycleId}/edges/{id}`
+}

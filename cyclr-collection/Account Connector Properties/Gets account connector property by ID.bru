@@ -1,0 +1,33 @@
+meta {
+  name: Gets account connector property by ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{cyclr_baseUrl}}/v1.0/account/connectors/:accountConnectorId/properties/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  @description('Account connector ID')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+  @description('Account connector property ID')
+  id: {{cyclr_accountConnectorPropertyId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Gets account connector property by ID**
+  
+  `GET /v1.0/account/connectors/{accountConnectorId}/properties/{id}`
+}

@@ -1,0 +1,43 @@
+meta {
+  name: Add an account connector and tools to the specified MCP server
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Mcp/servers/:id/connectors/:accountConnectorId/tools
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the MCP server to add the tools to.')
+  id: {{cyclr_mcpServerId}}
+  @description('ID of the account connector to add to the MCP server.')
+  accountConnectorId: {{cyclr_accountConnectorId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  [
+    {
+      "CategoryId": 0,
+      "MethodUniqueIdentifier": "00000000-0000-0000-0000-000000000000",
+      "Hint": ""
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Add an account connector and tools to the specified MCP server.**
+  
+  `POST /v1.0/Mcp/servers/{id}/connectors/{accountConnectorId}/tools`
+}

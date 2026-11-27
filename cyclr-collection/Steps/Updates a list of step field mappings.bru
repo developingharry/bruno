@@ -1,0 +1,56 @@
+meta {
+  name: Updates a list of step field mappings
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{cyclr_baseUrl}}/v1.0/Steps/:id/fieldmappings
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the step the field mappings belong to')
+  id: {{cyclr_stepId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  [
+    {
+      "MappingType": "PreviousStep",
+      "SourceFieldId": 0,
+      "SourceStepId": "00000000-0000-0000-0000-000000000000",
+      "TriggerValue": null,
+      "TriggerValueDisplayName": null,
+      "Value": "",
+      "IsLaunchVisible": false,
+      "Field": {
+        "ConnectorField": "",
+        "SystemField": "",
+        "DisplayName": "",
+        "Description": "",
+        "DataType": "Undefined",
+        "DataTypeFormat": "",
+        "EntityIdentifier": "",
+        "ForRequestFormat": false,
+        "Id": 0
+      }
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Updates a list of step field mappings**
+  
+  `PUT /v1.0/Steps/{id}/fieldmappings`
+}

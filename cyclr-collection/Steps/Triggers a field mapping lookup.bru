@@ -1,0 +1,41 @@
+meta {
+  name: Triggers a field mapping lookup
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/Steps/:id/fieldmappings/:fieldId/lookup
+  body: json
+  auth: inherit
+}
+
+params:path {
+  @description('ID of the step to trigger the field mapping lookup for')
+  id: {{cyclr_stepId}}
+  @description('Field ID')
+  fieldId: {{cyclr_fieldId}}
+}
+
+headers {
+  @description("For calls to Cyclr API endpoints that relate to an account, you need to provide the account's <code>{API ID}</code> as an HTTP header in the request: <code>X-Cyclr-Account: {API_ID}</code>.")
+  X-Cyclr-Account: {{cyclr_accountId}}
+}
+
+body:json {
+  {
+    "TriggerId": 0,
+    "TriggerParameters": {},
+    "TriggerFieldMappings": {}
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Triggers a field mapping lookup**
+  
+  `POST /v1.0/Steps/{id}/fieldmappings/{fieldId}/lookup`
+}

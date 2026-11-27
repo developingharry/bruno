@@ -1,0 +1,25 @@
+meta {
+  name: Generates an ORBIT URL for the account
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{cyclr_baseUrl}}/v1.0/accounts/:id/orbit
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: {{cyclr_accountId}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  **Generates an ORBIT URL for the account**
+  
+  `POST /v1.0/accounts/{id}/orbit`
+}
